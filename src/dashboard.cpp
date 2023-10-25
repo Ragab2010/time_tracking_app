@@ -1,8 +1,9 @@
 #include "dashboard.h"
 #include <iostream>
 
-void Dashboard::addTask(const Task& task) {
-    tasks.push_back(task);
+void Dashboard::addTask(const Task task) {
+    // tasks.push_back(std::move(task));
+    tasks.emplace_back(task);
 }
 
 void Dashboard::displayDashboard() const {
