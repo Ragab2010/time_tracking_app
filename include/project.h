@@ -6,7 +6,7 @@
 
 class Milestone {
 public:
-    Milestone(const std::string& name, const std::string& dueDate);
+    Milestone(const std::string name, const std::string dueDate);
     const std::string& getName() const;
     const std::string& getDueDate() const;
 private:

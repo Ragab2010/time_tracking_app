@@ -1,7 +1,7 @@
 #include "project.h"
 
-Milestone::Milestone(const std::string& name, const std::string& dueDate)
-    : name(name), dueDate(dueDate) {}
+Milestone::Milestone(const std::string name, const std::string dueDate)
+    : name(std::move(name)), dueDate(std::move(dueDate)) {}
 
 const std::string& Milestone::getName() const {
     return name;
