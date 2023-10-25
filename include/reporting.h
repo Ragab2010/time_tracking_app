@@ -7,9 +7,9 @@ class ReportGenerator {
 public:
     ReportGenerator(const TimeTracker& timeTracker);
     void generateReport() const;
+
 private:
     const TimeTracker& timeTracker;
 };
 
 #endif
-

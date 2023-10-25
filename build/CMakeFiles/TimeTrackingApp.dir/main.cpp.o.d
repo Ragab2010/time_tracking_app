@@ -145,7 +145,9 @@ CMakeFiles/TimeTrackingApp.dir/main.cpp.o: \
  /usr/include/c++/11/bits/locale_facets.tcc \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
- /usr/include/c++/11/bits/istream.tcc \
+ /usr/include/c++/11/bits/istream.tcc /usr/include/c++/11/chrono \
+ /usr/include/c++/11/ratio /usr/include/c++/11/limits \
+ /usr/include/c++/11/ctime /usr/include/c++/11/bits/parse_numbers.h \
  /mnt/01D5AB1A0D598E50/Ragab/books/C++/c++projects/time_tracking_app/include/authentication.h \
  /mnt/01D5AB1A0D598E50/Ragab/books/C++/c++projects/time_tracking_app/include/dashboard.h \
  /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_uninitialized.h \
@@ -156,9 +158,7 @@ CMakeFiles/TimeTrackingApp.dir/main.cpp.o: \
  /mnt/01D5AB1A0D598E50/Ragab/books/C++/c++projects/time_tracking_app/include/task.h \
  /mnt/01D5AB1A0D598E50/Ragab/books/C++/c++projects/time_tracking_app/include/project.h \
  /mnt/01D5AB1A0D598E50/Ragab/books/C++/c++projects/time_tracking_app/include/time_tracking.h \
- /usr/include/c++/11/chrono /usr/include/c++/11/ratio \
- /usr/include/c++/11/limits /usr/include/c++/11/ctime \
- /usr/include/c++/11/bits/parse_numbers.h /usr/include/c++/11/utility \
- /usr/include/c++/11/bits/stl_relops.h \
  /mnt/01D5AB1A0D598E50/Ragab/books/C++/c++projects/time_tracking_app/include/reporting.h \
- /mnt/01D5AB1A0D598E50/Ragab/books/C++/c++projects/time_tracking_app/include/time_tracking.h
+ /mnt/01D5AB1A0D598E50/Ragab/books/C++/c++projects/time_tracking_app/include/time_tracking.h \
+ /mnt/01D5AB1A0D598E50/Ragab/books/C++/c++projects/time_tracking_app/include/cli.h \
+ /mnt/01D5AB1A0D598E50/Ragab/books/C++/c++projects/time_tracking_app/include/reporting.h

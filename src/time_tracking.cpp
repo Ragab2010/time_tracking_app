@@ -1,56 +1,67 @@
+#include <algorithm>
+#include <iostream>
+#include <chrono>
 #include "time_tracking.h"
 
-TimeEntry::TimeEntry(const Task& task)
-    : task(task), totalTime(0), isTracking(false) {}
 
-void TimeEntry::startTimer() {
-    if (!isTracking) {
-        startTime = std::chrono::system_clock::now();
-        isTracking = true;
-    }
+// TimeTracker methods
+// TimeTracker::TimeTracker(std::vector<Task>& tasks):tasks(tasks) {}
+
+// bool TimeTracker::startTimer(const Task& task) {
+//     for (TimeEntry& entry : timeEntries) {
+//         if (entry.getTask() == task && !entry.isTracking()) {
+//             entry.setTracking( true);
+//             return true;
+//         }
+//     }
+//     return false;
+// }
+
+// bool TimeTracker::stopTimer(const Task& task) {
+//     for (TimeEntry& entry : timeEntries) {
+//         if (entry.getTask() == task && entry.isTracking()) {
+//             entry.setTracking( false);
+//             return true;
+//         }
+//     }
+//     return false;
+// }
+
+std::vector<Task> TimeTracker::getTasksByPriority() const {
+    std::vector<Task> sortedTasks = tasks;
+    std::sort(sortedTasks.begin(), sortedTasks.end(), [](const Task& a, const Task& b) {
+        return a.getPriority() < b.getPriority();
+    });
+    return sortedTasks;
 }
 
-void TimeEntry::stopTimer() {
-    if (isTracking) {
-        std::chrono::time_point<std::chrono::system_clock> endTime = std::chrono::system_clock::now();
-        totalTime += std::chrono::duration_cast<std::chrono::seconds>(endTime - startTime);
-        isTracking = false;
-    }
+
+void TimeTracker::setTasks(std::vector<Task>& move_tasks){
+    tasks = move_tasks;
 }
 
-std::chrono::seconds TimeEntry::getTimeSpent() const {
-    return totalTime;
-}
 
-void TimeTracker::addTask(const Task& task) {
-    TimeEntry timeEntry(task);
-    timeEntries.push_back(timeEntry);
-}
+void TimeTracker::startExcuteTasks()  {
+    // Sort the tasks based on priority
+    std::sort(tasks.begin(), tasks.end(), [](const Task& a, const Task& b) {
+        return a.getPriority() < b.getPriority();
+    });
 
-bool TimeTracker::startTimer(const Task& task) {
-    for (TimeEntry& entry : timeEntries) {
-        if (entry.getTask() == task) {
-            entry.startTimer();
-            return true;
+    // Loop and execute the tasks one by one
+    for ( const Task& task : tasks) {
+        std::cout << "Task: " << task.getTitle() << " (Priority: " << task.getPriority() << ", Time: " << task.getDuration().count() << " minutes)" << std::endl;
+
+        // Start a timer here and display live execution time
+        auto start_time = std::chrono::system_clock::now();
+        task.setStartTime(std::chrono::duration_cast<std::chrono::seconds>(start_time.time_since_epoch()));
+        auto end_time = start_time + task.getDuration();
+        task.setTotalTime(std::chrono::duration_cast<std::chrono::seconds>(end_time.time_since_epoch()));
+
+        while (std::chrono::system_clock::now() < end_time) {
+            auto elapsed_time = std::chrono::duration_cast<std::chrono::minutes>(std::chrono::system_clock::now() - start_time);
+            std::cout << "Time elapsed: " << elapsed_time.count() << " minutes\r";
+            std::cout.flush();
         }
+        std::cout << "Task completed." << std::endl;
     }
-    return false;
-}
-
-bool TimeTracker::stopTimer(const Task& task) {
-    for (TimeEntry& entry : timeEntries) {
-        if (entry.getTask() == task) {
-            entry.stopTimer();
-            return true;
-        }
-    }
-    return false;
-}
-
-const std::vector<TimeEntry>& TimeTracker::getTimeEntries() const {
-    return timeEntries;
-}
-
-const Task& TimeEntry::getTask() const{
-    return task;
 }

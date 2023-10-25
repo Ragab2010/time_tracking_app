@@ -1,54 +1,82 @@
 #include <iostream>
+#include <chrono>
 #include "authentication.h"
 #include "dashboard.h"
 #include "task.h"
 #include "project.h"
 #include "time_tracking.h"
 #include "reporting.h"
+#include "cli.h"
+
+using namespace std::chrono;
 
 int main() {
-    // Create a user and authenticate
-    User user("john_doe", "password");
-    if (!user.authenticate()) {
-        std::cout << "Authentication failed. Exiting...\n";
-        return 1;
-    }
 
-    // Create tasks
-    Task task1("Task 1", 2);
-    Task task2("Task 2", 1);
-    Task task3("Task 3", 3);
-
-    // Create a dashboard
-    Dashboard dashboard;
-    dashboard.addTask(task1);
-    dashboard.addTask(task2);
-    dashboard.addTask(task3);
-
-    // Create a project and add milestones
-    Project project("Project A", "Project Manager");
-    Milestone milestone1("Milestone 1", "2023-12-31");
-    Milestone milestone2("Milestone 2", "2024-03-15");
-    project.addMilestone(milestone1);
-    project.addMilestone(milestone2);
-
-    // Create a time tracker
     TimeTracker timeTracker;
-    timeTracker.addTask(task1);
-    timeTracker.addTask(task2);
-    timeTracker.addTask(task3);
+    std::vector<Task> tasks;
 
-    // Start and stop timers
-    timeTracker.startTimer(task1);
-    timeTracker.startTimer(task2);
-    timeTracker.stopTimer(task1);
-    timeTracker.startTimer(task3);
-    timeTracker.stopTimer(task2);
-    timeTracker.stopTimer(task3);
+    while (true) {
+        std::cout << "Time Tracking Application Menu:" << std::endl;
+        std::cout << "1. Add a task with priority and time (in minutes)" << std::endl;
+        std::cout << "2. Start executing tasks based on priority" << std::endl;
+        std::cout << "3. Generate a time tracking report" << std::endl;
+        std::cout << "4. Quit" << std::endl;
+        std::cout << "Enter your choice: ";
 
-    // Generate a time tracking report
-    ReportGenerator reportGenerator(timeTracker);
-    reportGenerator.generateReport();
+        int choice;
+        std::cin >> choice;
+
+        switch (choice) {
+            case 1: {
+                std::string taskTitle;
+                int priority;
+                int minutes;
+
+                std::cout << "Enter task title: ";
+                std::cin.ignore();
+                std::getline(std::cin, taskTitle);
+                std::cout << "Enter task priority: ";
+                std::cin >> priority;
+                std::cout << "Enter task time (in minutes): ";
+                std::cin >> minutes;
+
+                Task newTask(taskTitle, priority , minutes);
+
+                tasks.push_back(newTask);
+                // timeTracker.addTask(newTask);
+                std::cout << "Added task: " << taskTitle << " with priority " << priority << " and time " << minutes << " minutes." << std::endl;
+                break;
+            }
+
+            case 2: {
+                //set tasks for timerTracker
+                timeTracker.setTasks(tasks);
+                if (tasks.empty()) {
+                    std::cerr << "No tasks to execute. Please add tasks with priorities and times." << std::endl;
+                    break;
+                }
+
+                std::cout << "Executing tasks based on priority:" << std::endl;
+                timeTracker.startExcuteTasks();
+
+                break;
+            }
+
+            case 3: {
+                ReportGenerator reportGenerator(timeTracker);
+                reportGenerator.generateReport();
+                break;
+            }
+
+            case 4: {
+                std::cout << "Goodbye!" << std::endl;
+                return 0;
+            }
+
+            default:
+                std::cerr << "Invalid choice. Please enter a valid option." << std::endl;
+        }
+    }
 
     return 0;
 }

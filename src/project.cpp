@@ -23,5 +23,6 @@ const std::string& Project::getManager() const {
 }
 
 void Project::addMilestone(const Milestone& milestone) {
-    milestones.push_back(milestone);
+    // milestones.push_back(milestone);
+    milestones.emplace_back(milestone);
 }

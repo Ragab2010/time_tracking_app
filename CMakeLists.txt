@@ -15,6 +15,7 @@ set(SOURCE_FILES
     src/project.cpp
     src/time_tracking.cpp
     src/reporting.cpp
+    #src/cli.cpp
 )
 
 # Define your header files
@@ -25,6 +26,8 @@ set(HEADER_FILES
     include/project.h
     include/time_tracking.h
     include/reporting.h
+    #include/cli.h
+    #include/cxxopts.hpp
 )
 
 # Create the executable

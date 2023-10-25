@@ -48,6 +48,7 @@
         "streambuf": "cpp",
         "typeinfo": "cpp",
         "chrono": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "condition_variable": "cpp"
     }
 }
