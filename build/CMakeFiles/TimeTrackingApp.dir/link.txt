@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/TimeTrackingApp.dir/main.cpp.o CMakeFiles/TimeTrackingApp.dir/src/authentication.cpp.o CMakeFiles/TimeTrackingApp.dir/src/dashboard.cpp.o CMakeFiles/TimeTrackingApp.dir/src/task.cpp.o CMakeFiles/TimeTrackingApp.dir/src/project.cpp.o CMakeFiles/TimeTrackingApp.dir/src/time_tracking.cpp.o CMakeFiles/TimeTrackingApp.dir/src/reporting.cpp.o -o TimeTrackingApp 

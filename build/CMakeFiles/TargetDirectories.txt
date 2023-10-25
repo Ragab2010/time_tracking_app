@@ -1,0 +1,3 @@
+/mnt/01D5AB1A0D598E50/Ragab/books/C++/c++projects/time_tracking_app/build/CMakeFiles/TimeTrackingApp.dir
+/mnt/01D5AB1A0D598E50/Ragab/books/C++/c++projects/time_tracking_app/build/CMakeFiles/edit_cache.dir
+/mnt/01D5AB1A0D598E50/Ragab/books/C++/c++projects/time_tracking_app/build/CMakeFiles/rebuild_cache.dir
