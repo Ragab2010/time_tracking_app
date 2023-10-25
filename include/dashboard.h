@@ -6,7 +6,7 @@
 
 class Dashboard {
 public:
-    void addTask(const Task task);
+    void addTask(const Task& task);
     void displayDashboard() const;
 private:
     std::vector<Task> tasks;
