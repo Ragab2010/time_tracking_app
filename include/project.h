@@ -16,7 +16,7 @@ private:
 
 class Project {
 public:
-    Project(const std::string& name, const std::string& manager);
+    Project(const std::string name, const std::string manager);
     const std::string& getName() const;
     const std::string& getManager() const;
     void addMilestone(const Milestone& milestone);

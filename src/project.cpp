@@ -11,8 +11,8 @@ const std::string& Milestone::getDueDate() const {
     return dueDate;
 }
 
-Project::Project(const std::string& name, const std::string& manager)
-    : name(name), manager(manager) {}
+Project::Project(const std::string name, const std::string manager)
+    : name(std::move(name)), manager(std::move(manager)) {}
 
 const std::string& Project::getName() const {
     return name;
